@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fakhiera E'zzaty — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;family=DM+Serif+Display&amp;display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Sora', sans-serif; }
+    .font-display { font-family: 'DM Serif Display', serif; }
+
+    .grain {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 9999; opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .anim-fade-up { animation: fadeUp 0.7s ease forwards; opacity: 0; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.2s; }
+    .anim-d3 { animation-delay: 0.3s; }
+    .anim-d4 { animation-delay: 0.4s; }
+    .anim-d5 { animation-delay: 0.5s; }
+    .anim-d6 { animation-delay: 0.6s; }
+    .anim-d7 { animation-delay: 0.7s; }
+
+    .project-card {
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .skill-tag {
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .skill-tag:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .timeline-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 3px solid; position: absolute; left: -7px; top: 6px;
+    }
+
+    /* Minimalist flower + twinkling background */
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      33% { transform: translateY(-20px) translateX(10px); }
+      66% { transform: translateY(-10px) translateX(-10px); }
+    }
+
+    .hero-decoration {
+      position: absolute;
+      pointer-events: none;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="w-full h-full overflow-auto" style="background: #fef5f8;">
+   <div class="grain"></div><!-- Navigation -->
+   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b" style="background: rgba(255,245,250,0.95); border-color: rgba(236,124,180,0.3);">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href="#hero" class="font-display text-xl" id="nav-name" style="color: #e84d8f;">Fakhiera E'zzaty E-portfolio</a>
+     <div class="hidden md:flex gap-8 text-sm tracking-wide"><a href="#about" class="nav-link" style="color: #c8639d;">About</a> <a href="#skills" class="nav-link" style="color: #c8639d;">Skills</a> <a href="#projects" class="nav-link" style="color: #c8639d;">Projects</a> <a href="#education" class="nav-link" style="color: #c8639d;">Education</a> <a href="#experience" class="nav-link" style="color: #c8639d;">Experience</a> <a href="#contact" class="nav-link" style="color: #c8639d;">Contact</a>
+     </div><button id="mobile-menu-btn" class="md:hidden" style="color: #e84d8f;" aria-label="Menu"> <i data-lucide="menu" style="width:24px;height:24px;"></i> </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col gap-3 text-sm"><a href="#about" class="mobile-nav-link py-1" style="color: #c8639d;">About</a> <a href="#skills" class="mobile-nav-link py-1" style="color: #c8639d;">Skills</a> <a href="#projects" class="mobile-nav-link py-1" style="color: #c8639d;">Projects</a> <a href="#contact" class="mobile-nav-link py-1" style="color: #c8639d;">Contact</a>
+    </div>
+   </nav><!-- Hero -->
+   <section id="hero" class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden" style="background: radial-gradient(ellipse at 30% 20%, rgba(236,124,180,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(252,198,220,0.12) 0%, transparent 50%);"><!-- Large flowers -->
+    <div class="hero-decoration" style="top: 5%; left: 5%; width: 140px; height: 140px; opacity: 0.35; animation: floatSlow 8s ease-in-out infinite;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="28" r="18" fill="rgba(232, 77, 159, 0.35)" /> <circle cx="75" cy="42" r="18" fill="rgba(236, 124, 180, 0.28)" /> <circle cx="72" cy="72" r="18" fill="rgba(232, 77, 159, 0.32)" /> <circle cx="28" cy="72" r="18" fill="rgba(236, 124, 180, 0.28)" /> <circle cx="25" cy="42" r="18" fill="rgba(252, 198, 220, 0.35)" /> <circle cx="50" cy="50" r="16" fill="rgba(232, 77, 159, 0.45)" />
+     </svg>
+    </div>
+    <div class="hero-decoration" style="top: 20%; right: 8%; width: 110px; height: 110px; opacity: 0.4; animation: floatSlow 10s ease-in-out infinite 2s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="28" r="15" fill="rgba(236, 124, 180, 0.38)" /> <circle cx="70" cy="48" r="15" fill="rgba(252, 198, 220, 0.32)" /> <circle cx="50" cy="70" r="15" fill="rgba(236, 124, 180, 0.38)" /> <circle cx="30" cy="48" r="15" fill="rgba(232, 77, 159, 0.35)" /> <circle cx="50" cy="50" r="13" fill="rgba(232, 77, 159, 0.48)" />
+     </svg>
+    </div>
+    <div class="hero-decoration" style="bottom: 12%; left: 18%; width: 95px; height: 95px; opacity: 0.35; animation: floatSlow 12s ease-in-out infinite 4s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="30" r="13" fill="rgba(252, 198, 220, 0.42)" /> <circle cx="68" cy="50" r="13" fill="rgba(236, 124, 180, 0.38)" /> <circle cx="50" cy="68" r="13" fill="rgba(232, 77, 159, 0.38)" /> <circle cx="32" cy="50" r="13" fill="rgba(252, 198, 220, 0.38)" /> <circle cx="50" cy="50" r="11" fill="rgba(232, 77, 159, 0.52)" />
+     </svg>
+    </div><!-- Medium flowers -->
+    <div class="hero-decoration" style="top: 15%; left: 45%; width: 80px; height: 80px; opacity: 0.28; animation: floatSlow 11s ease-in-out infinite 1s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="30" r="12" fill="rgba(232, 77, 159, 0.3)" /> <circle cx="67" cy="48" r="12" fill="rgba(236, 124, 180, 0.28)" /> <circle cx="50" cy="65" r="12" fill="rgba(252, 198, 220, 0.3)" /> <circle cx="33" cy="48" r="12" fill="rgba(232, 77, 159, 0.28)" /> <circle cx="50" cy="48" r="10" fill="rgba(232, 77, 159, 0.4)" />
+     </svg>
+    </div>
+    <div class="hero-decoration" style="top: 45%; right: 12%; width: 75px; height: 75px; opacity: 0.32; animation: floatSlow 9s ease-in-out infinite 3s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="28" r="11" fill="rgba(236, 124, 180, 0.32)" /> <circle cx="66" cy="47" r="11" fill="rgba(252, 198, 220, 0.28)" /> <circle cx="50" cy="66" r="11" fill="rgba(232, 77, 159, 0.32)" /> <circle cx="34" cy="47" r="11" fill="rgba(236, 124, 180, 0.28)" /> <circle cx="50" cy="47" r="9" fill="rgba(232, 77, 159, 0.42)" />
+     </svg>
+    </div>
+    <div class="hero-decoration" style="bottom: 25%; right: 20%; width: 85px; height: 85px; opacity: 0.3; animation: floatSlow 13s ease-in-out infinite 5s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="30" r="13" fill="rgba(252, 198, 220, 0.35)" /> <circle cx="68" cy="50" r="13" fill="rgba(236, 124, 180, 0.32)" /> <circle cx="50" cy="68" r="13" fill="rgba(232, 77, 159, 0.35)" /> <circle cx="32" cy="50" r="13" fill="rgba(252, 198, 220, 0.32)" /> <circle cx="50" cy="50" r="11" fill="rgba(232, 77, 159, 0.45)" />
+     </svg>
+    </div><!-- Small flowers -->
+    <div class="hero-decoration" style="top: 60%; left: 8%; width: 65px; height: 65px; opacity: 0.25; animation: floatSlow 10s ease-in-out infinite 2.5s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="30" r="10" fill="rgba(232, 77, 159, 0.28)" /> <circle cx="65" cy="48" r="10" fill="rgba(236, 124, 180, 0.25)" /> <circle cx="50" cy="65" r="10" fill="rgba(252, 198, 220, 0.28)" /> <circle cx="35" cy="48" r="10" fill="rgba(232, 77, 159, 0.25)" /> <circle cx="50" cy="48" r="8" fill="rgba(232, 77, 159, 0.38)" />
+     </svg>
+    </div>
+    <div class="hero-decoration" style="top: 35%; right: 25%; width: 70px; height: 70px; opacity: 0.28; animation: floatSlow 11s ease-in-out infinite 1.5s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="30" r="11" fill="rgba(236, 124, 180, 0.3)" /> <circle cx="67" cy="48" r="11" fill="rgba(252, 198, 220, 0.28)" /> <circle cx="50" cy="65" r="11" fill="rgba(232, 77, 159, 0.3)" /> <circle cx="33" cy="48" r="11" fill="rgba(236, 124, 180, 0.28)" /> <circle cx="50" cy="48" r="9" fill="rgba(232, 77, 159, 0.4)" />
+     </svg>
+    </div>
+    <div class="hero-decoration" style="bottom: 35%; left: 35%; width: 60px; height: 60px; opacity: 0.22; animation: floatSlow 12s ease-in-out infinite 3.5s;">
+     <svg viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="32" r="9" fill="rgba(252, 198, 220, 0.35)" /> <circle cx="65" cy="50" r="9" fill="rgba(236, 124, 180, 0.32)" /> <circle cx="50" cy="68" r="9" fill="rgba(232, 77, 159, 0.35)" /> <circle cx="35" cy="50" r="9" fill="rgba(252, 198, 220, 0.32)" /> <circle cx="50" cy="50" r="7" fill="rgba(232, 77, 159, 0.45)" />
+     </svg>
+    </div><!-- Twinkling stars -->
+    <div class="hero-decoration" style="top: 12%; left: 30%; width: 4px; height: 4px; border-radius: 50%; background: rgba(232, 77, 159, 0.5); animation: twinkle 2.5s ease-in-out infinite;"></div>
+    <div class="hero-decoration" style="top: 20%; right: 25%; width: 3px; height: 3px; border-radius: 50%; background: rgba(236, 124, 180, 0.6); animation: twinkle 3.5s ease-in-out infinite 0.5s;"></div>
+    <div class="hero-decoration" style="bottom: 30%; right: 30%; width: 3px; height: 3px; border-radius: 50%; background: rgba(232, 77, 159, 0.4); animation: twinkle 2.8s ease-in-out infinite 1s;"></div>
+    <div class="hero-decoration" style="top: 35%; left: 15%; width: 2px; height: 2px; border-radius: 50%; background: rgba(252, 198, 220, 0.5); animation: twinkle 3.2s ease-in-out infinite 0.3s;"></div>
+    <div class="hero-decoration" style="bottom: 25%; left: 50%; width: 3px; height: 3px; border-radius: 50%; background: rgba(236, 124, 180, 0.55); animation: twinkle 2.6s ease-in-out infinite 0.8s;"></div>
+    <div class="hero-decoration" style="top: 55%; right: 15%; width: 2.5px; height: 2.5px; border-radius: 50%; background: rgba(232, 77, 159, 0.45); animation: twinkle 3.8s ease-in-out infinite 1.2s;"></div>
+    <div class="hero-decoration" style="bottom: 40%; left: 25%; width: 2.5px; height: 2.5px; border-radius: 50%; background: rgba(252, 198, 220, 0.48); animation: twinkle 3s ease-in-out infinite 0.6s;"></div>
+    <div class="text-center max-w-3xl mx-auto pt-20 relative z-10">
+     <div  style="color: #e84d8f; border-color: rgba(232,77,159,0.3); background: rgba(236,124,180,0.15);">
+      
+     </div>
+     <h1 id="hero-title" class="font-display text-5xl md:text-7xl leading-tight anim-fade-up anim-d2" style="color: #b81a5c;">Nur Fakhiera E'zzaty Azman Shah</h1>
+     <p id="hero-subtitle" class="text-lg md:text-xl mt-5 anim-fade-up anim-d3 max-w-xl mx-auto leading-relaxed" style="color: #d0739d;">Multimedia Student · Web Developer · Digital Creator</p>
+     <div class="flex gap-4 justify-center mt-8 anim-fade-up anim-d4"><a href="#projects" class="px-7 py-3 rounded-full text-sm font-medium transition-all hover:scale-105" style="background: #e84d8f; color: #fff;"> View Projects </a> <a href="#contact" class="px-7 py-3 rounded-full text-sm font-medium border transition-all hover:scale-105" style="border-color: rgba(232,77,159,0.4); color: #e84d8f;"> Get in Touch </a>
+     </div>
+    </div>
+   </section><!-- About Me -->
+   <section id="about" class="py-24 px-6" style="background: rgba(252,198,220,0.08);">
+    <div class="max-w-5xl mx-auto">
+     <div class="anim-fade-up">
+      <h2 class="font-display text-4xl md:text-5xl mb-10" style="color: #b81a5c;">About Me</h2>
+     </div>
+     <div class="grid md:grid-cols-5 gap-10">
+      <div class="md:col-span-2">
+       <div class="w-64 h-80 rounded-2xl overflow-hidden border mb-6 mx-auto" style="border-color: rgba(232,77,159,0.25); background: rgba(252,198,220,0.3);">
+        <img src="fakhiera2.jpg" alt="Fakhiera Profile" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#f5a9d0'; this.alt='Profile image unavailable';">
+       </div>
+      </div>
+      <div class="md:col-span-3">
+       <p id="about-text" class="text-base leading-relaxed mb-6" style="color: #9e5580;">A creative and motivated Multimedia Education student with a strong interest in multimedia design, web development, and digital content creation. Experienced in developing user-friendly web systems and interactive educational materials through academic projects. Skilled in using design tools such as Canva and Figma, with a good sense of visual aesthetics and user experience. Possesses strong teamwork, communication, and problem-solving skills, and is able to adapt quickly to new technologies.</p>
+       <div class="flex gap-3 flex-wrap"><span class="px-3 py-1 rounded-full text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;"> Malay (Native)</span> <span class="px-3 py-1 rounded-full text-xs" style="background: rgba(252,198,220,0.2); color: #c8639d;"> English (Fluent)</span> <span class="px-3 py-1 rounded-full text-xs" style="background: rgba(232,77,159,0.1); color: #d0739d;">MUET Band 3.5</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills -->
+   <section id="skills" class="py-24 px-6" style="background: rgba(236,124,180,0.05);">
+    <div class="max-w-5xl mx-auto">
+     <h2 class="font-display text-4xl md:text-5xl mb-12" style="color: #b81a5c;">Skills &amp; Tools</h2>
+     <div class="grid md:grid-cols-2 gap-8"><!-- Technical -->
+      <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.18); border-color: rgba(232,77,159,0.25);">
+       <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(232,77,159,0.25);"><i data-lucide="code-2" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium" style="color: #b81a5c;">Technical Skills</h3>
+       </div>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">HTML</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">CSS</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">JavaScript</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">PHP</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">MySQL</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">C++</span>
+       </div>
+      </div><!-- Design -->
+      <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.22); border-color: rgba(232,77,159,0.2);">
+       <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(232,77,159,0.25);"><i data-lucide="palette" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium" style="color: #b81a5c;">Design &amp; Multimedia</h3>
+       </div>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Figma (UI/UX)</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">Adobe Illustrator</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Adobe Animate</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">CapCut</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Canva</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">Scratch</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">MIT App Inventor</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">Stop Motion</span>
+       </div>
+      </div><!-- Soft Skills -->
+      <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.22); border-color: rgba(232,77,159,0.2);">
+       <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(232,77,159,0.25);"><i data-lucide="users" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium" style="color: #b81a5c;">Soft Skills</h3>
+       </div>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Communication</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">Teamwork</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Problem-Solving</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">Time Management</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Attention to Detail</span>
+       </div>
+      </div><!-- Productivity -->
+      <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.22); border-color: rgba(232,77,159,0.2);">
+       <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(232,77,159,0.25);"><i data-lucide="monitor" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium" style="color: #b81a5c;">Productivity</h3>
+       </div>
+       <div class="flex flex-wrap gap-2"><span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Microsoft Word</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">Microsoft Excel</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffc9e3; color: #b81a5c;">Frontend Dev</span> <span class="skill-tag px-3 py-1.5 rounded-lg text-xs cursor-default font-medium" style="background: #ffa8d3; color: #b81a5c;">Basic Backend</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Projects -->
+   <section id="projects" class="py-24 px-6" style="background: rgba(252,198,220,0.08);">
+    <div class="max-w-5xl mx-auto">
+     <h2 class="font-display text-4xl md:text-5xl mb-12" style="color: #b81a5c;"> Projects</h2>
+     <div class="space-y-8" id="projects-list"><!-- Project 1 -->
+      <div class="project-card rounded-2xl border overflow-hidden" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="h-48 overflow-hidden rounded-t-2xl" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+        <img src="school.jpg" alt="School Prefect Application System" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+       </div>
+       <div class="p-8">
+        <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+         <div><span class="text-xs font-medium tracking-wider uppercase" style="color: #e84d8f;">Web Development</span>
+          <h3 id="project1-title" class="font-display text-2xl mt-1" style="color: #b81a5c;">School Website (SK Putrajaya Presint 8 (1))</h3>
+         </div>
+         <div class="flex gap-2 flex-wrap"><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">HTML</span> <span class="px-2 py-0.5 rounded text-xs" style="background: rgba(252,198,220,0.2); color: #d0739d;">CSS</span> <span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">JavaScript</span>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: #9e5580;">Developed a school website to present important information such as school background, announcements, activities, and contact details. The website is designed to be user-friendly and accessible for students, teachers, and parents.</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-5">
+         <div class="rounded-xl p-4" style="background: rgba(232,77,159,0.1); border: 1px solid rgba(232,77,159,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #e84d8f;">👤 My Role</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Frontend developer — designed and developed the website interface, including layout, navigation, and content structure to ensure a clean and organized user experience.</p>
+         </div>
+         <div class="rounded-xl p-4" style="background: rgba(252,198,220,0.1); border: 1px solid rgba(252,198,220,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #d0739d;">💡 Reflection</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Learned how to structure a complete website, improve layout design, and enhance user experience through proper navigation and visual arrangement. This project also strengthened my skills in HTML, CSS, and responsive design.</p>
+         </div>
+        </div><a  href="schoolvideo.mp4" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:translate-x-1" style="background: rgba(232,77,159,0.2); color: #e84d8f;">View Project <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+       </div>
+      </div><!-- Project 2 -->
+      <div class="project-card rounded-2xl border overflow-hidden" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="h-48 overflow-hidden rounded-t-2xl" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+        <img src="healthydiet.jpg" alt="Project 2" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+       </div>
+       <div class="p-8">
+        <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+         <div><span class="text-xs font-medium tracking-wider uppercase" style="color: #e84d8f;">UI/UX Design</span>
+          <h3 id="project2-title" class="font-display text-2xl mt-1" style="color: #b81a5c;">Healthy Diet App</h3>
+         </div>
+         <div class="flex gap-2 flex-wrap"><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Figma</span>
+         </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: #9e5580;">Designed comprehensive UI/UX layouts and interactive prototypes for a mobile health application that helps users track their nutrition, plan meals, and maintain a balanced diet with personalized recommendations.</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-5">
+         <div class="rounded-xl p-4" style="background: rgba(232,77,159,0.1); border: 1px solid rgba(232,77,159,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #e84d8f;">👤 My Role</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">UI/UX Designer — created wireframes, high-fidelity mockups, and interactive prototypes with user flow mapping in Figma.</p>
+         </div>
+         <div class="rounded-xl p-4" style="background: rgba(252,198,220,0.1); border: 1px solid rgba(252,198,220,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #d0739d;">💡 Reflection</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Deepened my understanding of user-centered design, learned to create interactive prototypes, and gained experience in designing intuitive mobile interfaces.</p>
+         </div>
+        </div><a id="project2-link" href="https://www.figma.com/proto/RRpaycgoAJirzRsGuGxi1q/HEALTHY-DIET-RECIPE?node-id=0-1&t=mTJEFJIOoryix2sD-1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:translate-x-1" style="background: rgba(232,77,159,0.2); color: #e84d8f;">View Project <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+       </div>
+      </div><!-- Project 3 -->
+      <div class="project-card rounded-2xl border overflow-hidden" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="h-48 overflow-hidden rounded-t-2xl" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+        <img src="zoo.jpg" alt="Project 3" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+       </div>
+       <div class="p-8">
+        <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+         <div><span class="text-xs font-medium tracking-wider uppercase" style="color: #e84d8f;">Mobile App</span>
+          <h3 id="project3-title" class="font-display text-2xl mt-1" style="color: #b81a5c;">Math Zoo Adventures</h3>
+         </div>
+         <div class="flex gap-2 flex-wrap"><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">MIT App Inventor</span><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Canva</span>
+         </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: #9e5580;">Developed an interactive educational mobile application designed for pre-school students to learn basic mathematics in a fun and engaging way. The app uses colorful visuals, simple instructions, and interactive activities to help young learners understand basic concepts such as additions and subtraction.</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-5">
+         <div class="rounded-xl p-4" style="background: rgba(232,77,159,0.1); border: 1px solid rgba(232,77,159,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #e84d8f;">👤 My Role</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Creative Director — responsible for designing the overall look and feel of the application, including creating the prototype using Canva. Also developed multimedia elements such as images and animations, and ensured the interface is simple, clear, and suitable for pre-school children.</p>
+         </div>
+         <div class="rounded-xl p-4" style="background: rgba(252,198,220,0.1); border: 1px solid rgba(252,198,220,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #d0739d;">💡 Reflection</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Learned how to design age-appropriate educational content by focusing on simplicity, visuals, and user interaction. This project improved my skills in UI design, multimedia integration, and understanding how young learners interact with digital applications.</p>
+         </div>
+        </div><a id="project3-link" href="https://youtu.be/Wd-xcLsFeTU?si=oBST6_OhdgHL547u" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:translate-x-1" style="background: rgba(232,77,159,0.2); color: #e84d8f;">View Project <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+       </div>
+      </div><!-- Project 4 -->
+      <div class="project-card rounded-2xl border overflow-hidden" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="h-48 overflow-hidden rounded-t-2xl" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+        <img src="taman.jpg" alt="Project 4" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+       </div>
+       <div class="p-8">
+        <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+         <div><span class="text-xs font-medium tracking-wider uppercase" style="color: #e84d8f;">Video Editing / Multimedia Production</span>
+          <h3 id="project4-title" class="font-display text-2xl mt-1" style="color: #b81a5c;">Putrajaya Biodiversity Documentary (Taman Saujana Hijau & Taman Botani)</h3>
+         </div>
+         <div class="flex gap-2 flex-wrap"><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Capcut</span> 
+         </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: #9e5580;">Produced a short documentary video showcasing the natural beauty and biodiversity of Putrajaya, focusing on Taman Saujana Hijau and Taman Botani. The video highlights scenic landscapes, greenery, plant diversity, and recreational spaces that promote environmental awareness and appreciation of nature. It combines real footage, background music, text overlays, and smooth transitions to create an engaging visual storytelling experience.</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-5">
+         <div class="rounded-xl p-4" style="background: rgba(232,77,159,0.1); border: 1px solid rgba(232,77,159,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #e84d8f;">👤 My Role</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Video Editor & Voice-over Narrator — responsible for editing the full documentary using CapCut and recording the voice-over narration. Tasks included selecting and arranging clips, syncing visuals with narration, adding transitions, subtitles, background music, and visual effects to enhance storytelling and audience engagement.</p>
+         </div>
+         <div class="rounded-xl p-4" style="background: rgba(252,198,220,0.1); border: 1px solid rgba(252,198,220,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #d0739d;">💡 Reflection</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Learned how to combine visual editing and voice narration to create a more immersive storytelling experience. Improved skills in video editing, audio recording, pacing, and content delivery. This project also strengthened my confidence in presenting information clearly through both visuals and narration.</p>
+         </div>
+        </div><a id="project4-link" href="https://youtu.be/Mzdvv1NeJeI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:translate-x-1" style="background: rgba(232,77,159,0.2); color: #e84d8f;">View Project <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+       </div>
+      </div><!-- Project 5 -->
+      <div class="project-card rounded-2xl border overflow-hidden" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="h-48 overflow-hidden rounded-t-2xl" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+        <img src="cutout.jpg" alt="Student Management System" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+       </div>
+       <div class="p-8">
+        <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+         <div><span class="text-xs font-medium tracking-wider uppercase" style="color: #e84d8f;">Video Animation / Multimedia Production</span>
+          <h3 id="project5-title" class="font-display text-2xl mt-1" style="color: #b81a5c;">Stop Motion Animation (Cartoon Cut-Out Style)</h3>
+         </div>
+         <div class="flex gap-2 flex-wrap"><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Stop Motion Studio</span> 
+         </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: #9e5580;">Produced a short stop motion animation using cut-out cartoon characters to create a simple storytelling video. The animation was created by capturing frame-by-frame movements to produce smooth motion effects. This project focuses on visual storytelling through handmade-style animation to make the content more engaging and creative.</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-5">
+         <div class="rounded-xl p-4" style="background: rgba(232,77,159,0.1); border: 1px solid rgba(232,77,159,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #e84d8f;">👤 My Role</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Stop Motion Animator — responsible for designing and arranging cut-out characters, setting up scenes, and capturing each frame using Stop Motion Studio. Also ensured smooth movement between frames by carefully adjusting timing and positioning of each character.</p>
+         </div>
+         <div class="rounded-xl p-4" style="background: rgba(252,198,220,0.1); border: 1px solid rgba(252,198,220,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #d0739d;">💡 Reflection</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Learned how stop motion animation works through detailed frame-by-frame creation. Improved patience, precision, and understanding of motion timing. This project also strengthened my creativity in producing simple but expressive animations using minimal tools.</p>
+         </div>
+        </div><a id="project5-link" href="https://youtu.be/sXUS48HP3zQ" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:translate-x-1" style="background: rgba(232,77,159,0.2); color: #e84d8f;">View Project <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+       </div>
+      </div><!-- Project 6 -->
+      <div class="project-card rounded-2xl border overflow-hidden" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="h-48 overflow-hidden rounded-t-2xl" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+        <img src="ikan.jpg" alt="Interactive E-Learning Module" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+       </div>
+       <div class="p-8">
+        <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+         <div><span class="text-xs font-medium tracking-wider uppercase" style="color: #e84d8f;">Video Animation / Multimedia Production</span>
+          <h3 id="project6-title" class="font-display text-2xl mt-1" style="color: #b81a5c;">Flipbook Style Animation (Drawn Objects)</h3>
+         </div>
+         <div class="flex gap-2 flex-wrap"><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">FlipaClip</span> 
+         </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: #9e5580;">Created a short animated video using FlipaClip by drawing objects and animating them frame-by-frame. The project focuses on simple motion animation where hand-drawn elements are brought to life through sequential frames, resulting in a smooth and engaging flipbook-style animation.</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-5">
+         <div class="rounded-xl p-4" style="background: rgba(232,77,159,0.1); border: 1px solid rgba(232,77,159,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #e84d8f;">👤 My Role</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Animator & Illustrator — responsible for drawing all objects and scenes directly in FlipaClip and animating them frame-by-frame. Also managed timing, motion flow, and scene transitions to ensure the animation is smooth and visually consistent.</p>
+         </div>
+         <div class="rounded-xl p-4" style="background: rgba(252,198,220,0.1); border: 1px solid rgba(252,198,220,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #d0739d;">💡 Reflection</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Learned how to create frame-by-frame animation using digital drawing tools. Improved skills in drawing consistency, motion timing, and creative storytelling. This project also helped me understand how simple sketches can be transformed into engaging animated videos using basic animation techniques.</p>
+         </div>
+        </div><a id="project6-link" href="https://youtu.be/vYXhUpJs5Do" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:translate-x-1" style="background: rgba(232,77,159,0.2); color: #e84d8f;">View Project <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+       </div>
+	   </div><!-- Project 7 -->
+      <div class="project-card rounded-2xl border overflow-hidden" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="h-48 overflow-hidden rounded-t-2xl" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+        <img src="EVENT.jpg" alt="Interactive E-Learning Module" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+       </div>
+       <div class="p-8">
+        <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+         <div><span class="text-xs font-medium tracking-wider uppercase" style="color: #e84d8f;">Graphic Design / Visual Communication</span>
+          <h3 id="project7-title" class="font-display text-2xl mt-1" style="color: #b81a5c;">Event Branding Materials Design</h3>
+         </div>
+         <div class="flex gap-2 flex-wrap"><span class="px-2 py-0.5 rounded text-xs" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Canva</span> 
+         </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5" style="color: #9e5580;">Designed a set of visual materials for event branding, including posters, certificates, and name tags for lanyards. The designs focus on a consistent theme, colour scheme, and typography to create a clean and professional visual identity. Each material was developed to ensure clarity, readability, and suitability for both digital use and printing purposes.</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-5">
+         <div class="rounded-xl p-4" style="background: rgba(232,77,159,0.1); border: 1px solid rgba(232,77,159,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #e84d8f;">👤 My Role</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Graphic Designer — responsible for designing posters, certificates, and lanyard name tags. Tasks included layout planning, selecting fonts and colours, arranging visual hierarchy, and preparing final designs for print and digital use. Ensured all materials maintained a unified and professional event branding style.</p>
+         </div>
+         <div class="rounded-xl p-4" style="background: rgba(252,198,220,0.1); border: 1px solid rgba(252,198,220,0.2);">
+          <p class="text-xs font-medium mb-1" style="color: #d0739d;">💡 Reflection</p>
+          <p class="text-xs leading-relaxed" style="color: #9e5580;">Learned how to design multiple event materials while maintaining consistency in style and branding. Improved skills in layout composition, typography balance, and print design preparation. This project also strengthened my understanding of creating clear and visually appealing communication materials for events.</p>
+         </div>
+        </div><a id="project6-link" href="https://drive.google.com/drive/folders/1KW4W1URlWMEKfUpOdqMcZLAg7bCbu1DO?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:translate-x-1" style="background: rgba(232,77,159,0.2); color: #e84d8f;">View Project <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Education Timeline -->
+   <section id="education" class="py-24 px-6" style="background: rgba(236,124,180,0.05);">
+    <div class="max-w-5xl mx-auto">
+     <h2 class="font-display text-4xl md:text-5xl mb-12" style="color: #b81a5c;">Academic Journey</h2>
+     <div class="space-y-6">
+      <!-- University -->
+      <div class="rounded-2xl overflow-hidden border transition-all hover:shadow-lg" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="grid md:grid-cols-3 gap-0">
+        <div class="rounded-l-2xl overflow-hidden md:rounded-r-none h-48 md:h-auto" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+         <img src="UPSI.jpg" alt="UPSI University" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+        </div>
+        <div class="md:col-span-2 p-8">
+         <div class="inline-block px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: rgba(232,77,159,0.2); color: #e84d8f;">
+          🎓 Current
+         </div>
+         <h3 class="font-display text-2xl mb-2" style="color: #b81a5c;">Bachelor of Education (Multimedia) with Honours</h3>
+         <p class="text-sm font-medium mb-1" style="color: #e84d8f;">Universiti Pendidikan Sultan Idris</p>
+         <p class="text-xs mb-4" style="color: #d0739d;">2023 – Present</p>
+         <p class="text-sm leading-relaxed mb-4" style="color: #9e5580;">Pursuing a degree focused on multimedia education with comprehensive study of web development, interactive media design, human-computer interaction, and multimedia pedagogy.</p>
+         <div class="flex flex-wrap gap-2"><span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Web Development</span> <span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(252,198,220,0.2); color: #d0739d;">Multimedia Design</span> <span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Human Computer Interaction (HCI)</span> <span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(252,198,220,0.2); color: #d0739d;">Interactive Media</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- College -->
+      <div class="rounded-2xl overflow-hidden border transition-all hover:shadow-lg" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+       <div class="grid md:grid-cols-3 gap-0">
+        <div class="rounded-l-2xl overflow-hidden md:rounded-r-none h-48 md:h-auto" style="background: linear-gradient(135deg, rgba(232,77,159,0.2), rgba(252,198,220,0.2));">
+         <img src="MATRIK.jpg" alt="Kolej Matrikulasi Johor" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='rgba(232,77,159,0.2)';">
+        </div>
+        <div class="md:col-span-2 p-8">
+         <div class="inline-block px-3 py-1 rounded-full text-xs font-medium mb-3" style="background: rgba(252,198,220,0.15); color: #d0739d;">
+          Completed
+         </div>
+         <h3 class="font-display text-2xl mb-2" style="color: #b81a5c;">Physical Science (Pre-University Program)</h3>
+         <p class="text-sm font-medium mb-1" style="color: #e84d8f;">Kolej Matrikulasi Johor</p>
+         <p class="text-xs mb-4" style="color: #d0739d;">2021 – 2023</p>
+         <p class="text-sm leading-relaxed mb-4" style="color: #9e5580;">Completed pre-university studies with strong focus on physics, chemistry, mathematics, and computer science — providing foundational knowledge for multimedia and technology disciplines.</p>
+         <div class="flex flex-wrap gap-2"><span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Physics</span> <span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(252,198,220,0.2); color: #d0739d;">Chemistry</span> <span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(232,77,159,0.15); color: #e84d8f;">Mathematics</span> <span class="px-2.5 py-1 rounded text-xs font-medium" style="background: rgba(252,198,220,0.2); color: #d0739d;">Computer Science</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Experience -->
+   <section id="experience" class="py-24 px-6" style="background: rgba(236,124,180,0.05);">
+    <div class="max-w-5xl mx-auto">
+     <h2 class="font-display text-4xl md:text-5xl mb-12" style="color: #b81a5c;">Experience</h2><!-- Leadership Positions -->
+     <div class="mb-12">
+      <h3 class="text-lg font-medium mb-6" style="color: #b81a5c;">Leadership Positions</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="star" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">Exco of Economy, Entrepreneurship &amp; Welfare</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">Creative Multimedia Association (PMK)</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Executive leadership role managing welfare initiatives, entrepreneurship programs, and economic affairs for the student association.</p>
+       </div>
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="users" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">Committee Member (AJK)</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">Panggung Khidmat (PAKAT) — State Level</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Served on the state-level committee for community service initiatives at Panggung Percubaan.</p>
+       </div>
+      </div>
+     </div><!-- National & International Recognition -->
+     <div class="mb-12">
+      <h3 class="text-lg font-medium mb-6" style="color: #b81a5c;">National &amp; International Recognition</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="globe" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">International Young Future Leaders Summit</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">iFUTURE 2024</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Selected as a University Delegate for this prestigious international leadership summit focused on future innovation and global challenges.</p>
+       </div>
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="award" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">Dean's List Award</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">5 Consecutive Semesters • Current CGPA: 4.00</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Consistently recognized for academic excellence with perfect GPA achievement and continuous Dean's List honors (Anugerah Dekan).</p>
+       </div>
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="zap" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">BIZZTART Entrepreneurship Program</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">National Level • Dewan Sri Tanjung</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Participant in this prestigious national entrepreneurship program showcasing innovative business ideas and startup potential.</p>
+       </div>
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="lightbulb" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">Putrajaya Festival of Ideas</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">PFOI • Innovation &amp; Digital Economy</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Participant focusing on innovative solutions for future digital economy and technological advancement.</p>
+       </div>
+      </div>
+     </div><!-- Community &amp; Social Impact -->
+     <div class="mb-12">
+      <h3 class="text-lg font-medium mb-6" style="color: #b81a5c;">Community &amp; Social Impact</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="heart" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">Lead Facilitator — Fun Coding with Scratch</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">Yayasan Kasih Sayang Negeri Sembilan</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Led community coding program teaching children block-based programming with Scratch, promoting tech literacy.</p>
+       </div>
+       <div class="rounded-2xl p-6 border" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(232,77,159,0.25);"><i data-lucide="leaf" style="width:20px;height:20px;color:#e84d8f;"></i>
+        </div>
+        <h3 class="font-medium mb-2" style="color: #b81a5c;">Environmental Sustainability Initiative</h3>
+        <p class="text-xs mb-1" style="color: #e84d8f;">Program Hijaukan Dunia, Asingkan Sampah</p>
+        <p class="text-xs leading-relaxed" style="color: #9e5580;">Participant in environmental sustainability program promoting recycling and green initiatives for planetary health.</p>
+       </div>
+       
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact -->
+   <section id="contact" class="py-24 px-6" style="background: rgba(252,198,220,0.08);">
+    <div class="max-w-3xl mx-auto text-center">
+     <h2 class="font-display text-4xl md:text-5xl mb-4" style="color: #b81a5c;">Let's Connect</h2>
+     <p class="mb-10 text-sm" style="color: #9e5580;">Open to internship opportunities, collaborations, and creative projects.</p>
+     <div class="grid sm:grid-cols-3 gap-4"><a href="mailto:iqiera03@gmail.com" class="rounded-2xl p-6 border text-center transition-all hover:scale-105 block" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);"> <i data-lucide="mail" style="width:24px;height:24px;color:#e84d8f;margin:0 auto 8px;display:block;"></i> <p class="text-xs font-medium mb-1" style="color: #b81a5c;">Email</p><p id="contact-email-display" class="text-xs" style="color: #9e5580;">iqiera03@gmail.com</p></a> <a href="tel:+60177790764" class="rounded-2xl p-6 border text-center transition-all hover:scale-105 block" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);"> <i data-lucide="phone" style="width:24px;height:24px;color:#e84d8f;margin:0 auto 8px;display:block;"></i> <p class="text-xs font-medium mb-1" style="color: #b81a5c;">Phone</p><p id="contact-phone-display" class="text-xs" style="color: #9e5580;">017-7790764</p></a> <a href="https://www.linkedin.com/in/fakhieraezzaty" target="_blank" rel="noopener noreferrer" class="rounded-2xl p-6 border text-center transition-all hover:scale-105 block" style="background: rgba(252,198,220,0.2); border-color: rgba(232,77,159,0.2);"> <i data-lucide="linkedin" style="width:24px;height:24px;color:#e84d8f;margin:0 auto 8px;display:block;"></i> <p class="text-xs font-medium mb-1" style="color: #b81a5c;">LinkedIn</p><p class="text-xs" style="color: #9e5580;">fakhieraezzaty</p></a>
+     </div>
+     <p class="mt-8 text-xs" style="color: #d0739d;">📍 Mersing, Johor</p>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 border-t" style="border-color: rgba(232,77,159,0.2);">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+     <p class="text-xs" style="color: #d0739d;">© 2026 Nur Fakhiera E'zzaty. All rights reserved.</p>
+     <div class="flex gap-4"><a href="#hero" class="text-xs transition-colors" style="color: #d0739d;">Back to top ↑</a>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+  const defaultConfig = {
+    hero_title: "Nur Fakhiera E'zzaty",
+    hero_subtitle: "Multimedia Education Student · Web Developer · Digital Creator",
+    about_text: "A creative and motivated Multimedia Education student with a strong interest in multimedia design, web development, and digital content creation. Experienced in developing user-friendly web systems and interactive educational materials through academic projects. Skilled in using design tools such as Canva and Figma, with a good sense of visual aesthetics and user experience. Possesses strong teamwork, communication, and problem-solving skills, and is able to adapt quickly to new technologies.",
+    contact_email: "iqiera03@gmail.com",
+    contact_phone: "017-7790764",
+    project1_title: "School Prefect Application System",
+    project1_link: "#",
+    project2_title: "Healthy Diet App",
+    project2_link: "#",
+    project3_title: "Math Zoo Adventures",
+    project3_link: "#",
+    project4_title: "Putrajaya Biodiversity Documentary & Creative Works",
+    project4_link: "#",
+    project5_title: "Student Management System",
+    project5_link: "#",
+    project6_title: "Interactive E-Learning Module",
+    project6_link: "#",
+    background_color: "#fef5f8",
+    surface_color: "rgba(252,198,220,0.2)",
+    text_color: "#b81a5c",
+    primary_action_color: "#e84d8f",
+    secondary_action_color: "#d0739d",
+    font_family: "Sora",
+    font_size: 14
+  };
+
+  async function initApp() {
+    await window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => {
+        const c = { ...defaultConfig, ...config };
+
+        document.getElementById('hero-title').textContent = c.hero_title;
+        document.getElementById('hero-subtitle').textContent = c.hero_subtitle;
+        document.getElementById('about-text').textContent = c.about_text;
+        document.getElementById('contact-email-display').textContent = c.contact_email;
+        document.getElementById('contact-phone-display').textContent = c.contact_phone;
+        document.getElementById('project1-title').textContent = c.project1_title;
+        document.getElementById('project1-link').href = c.project1_link;
+        document.getElementById('project2-title').textContent = c.project2_title;
+        document.getElementById('project2-link').href = c.project2_link;
+        document.getElementById('project3-title').textContent = c.project3_title;
+        document.getElementById('project3-link').href = c.project3_link;
+        document.getElementById('project4-title').textContent = c.project4_title;
+        document.getElementById('project4-link').href = c.project4_link;
+        document.getElementById('project5-title').textContent = c.project5_title;
+        document.getElementById('project5-link').href = c.project5_link;
+        document.getElementById('project6-title').textContent = c.project6_title;
+        document.getElementById('project6-link').href = c.project6_link;
+
+        // Colors
+        document.getElementById('app-wrapper').style.background = c.background_color;
+
+        // Font
+        const fontStack = `${c.font_family}, Sora, sans-serif`;
+        document.body.style.fontFamily = fontStack;
+
+        // Font size
+        const base = c.font_size;
+        document.querySelectorAll('.text-base').forEach(el => el.style.fontSize = `${base}px`);
+        document.querySelectorAll('.text-sm').forEach(el => el.style.fontSize = `${base * 0.875}px`);
+        document.querySelectorAll('.text-xs').forEach(el => el.style.fontSize = `${base * 0.75}px`);
+
+        // Nav links color
+        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(el => {
+          el.style.color = c.secondary_action_color;
+          el.style.setProperty('--after-bg', c.primary_action_color);
+        });
+
+        // Text color for headings
+        document.querySelectorAll('h1, h2, h3').forEach(el => {
+          if (!el.closest('.project-card .rounded-xl')) el.style.color = c.text_color;
+        });
+
+        // Primary action color
+        document.getElementById('nav-name').style.color = c.primary_action_color;
+      },
+      mapToCapabilities: (config) => {
+        const c = { ...defaultConfig, ...config };
+        return {
+          recolorables: [
+            { get: () => c.background_color, set: (v) => { c.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+            { get: () => c.surface_color || defaultConfig.surface_color, set: (v) => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+            { get: () => c.text_color, set: (v) => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+            { get: () => c.primary_action_color, set: (v) => { c.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+            { get: () => c.secondary_action_color, set: (v) => { c.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => c.font_family,
+            set: (v) => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => c.font_size,
+            set: (v) => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        };
+      },
+      mapToEditPanelValues: (config) => {
+        const c = { ...defaultConfig, ...config };
+        return new Map([
+          ["hero_title", c.hero_title],
+          ["hero_subtitle", c.hero_subtitle],
+          ["about_text", c.about_text],
+          ["contact_email", c.contact_email],
+          ["contact_phone", c.contact_phone],
+          ["project1_title", c.project1_title],
+          ["project1_link", c.project1_link],
+          ["project2_title", c.project2_title],
+          ["project2_link", c.project2_link],
+          ["project3_title", c.project3_title],
+          ["project3_link", c.project3_link],
+          ["project4_title", c.project4_title],
+          ["project4_link", c.project4_link],
+          ["project5_title", c.project5_title],
+          ["project5_link", c.project5_link],
+          ["project6_title", c.project6_title],
+          ["project6_link", c.project6_link]
+        ]);
+      }
+    });
+  }
+
+  initApp();
+
+  // Mobile menu
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('hidden');
+    });
+  });
+
+  lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f3d6add40b0fc5d',t:'MTc3NzQ1NjM4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
